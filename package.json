@@ -1,0 +1,10 @@
+{
+  "name": "rag-test-kit",
+  "version": "1.0.0",
+  "description": "A small starter kit for testing RAG retrieval with a golden test set that survives re-chunking.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "eval": "node eval.js"
+  }
+}

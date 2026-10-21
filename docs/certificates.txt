@@ -1,0 +1,15 @@
+Sample Academy Certificates
+
+This document explains how course certificates work at Sample Academy.
+
+Earning a certificate
+A certificate is issued when a learner completes every module and scores at least 60 percent in the final project review. Quizzes are for practice and do not count towards the certificate.
+
+Verification
+Every certificate has a unique ID. Employers can verify a certificate by entering this ID on the verification page. A certificate never expires.
+
+Name changes
+If the name on a certificate is wrong, the learner can request one correction free of charge. Further corrections are not supported.
+
+Refunded courses
+If a learner receives a refund for a course, any certificate already issued for that course is cancelled and can no longer be verified.

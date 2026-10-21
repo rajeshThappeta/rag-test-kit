@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q1",
+    "question": "I joined a self-paced course 3 days ago and watched a few videos. Can I still get my money back?",
+    "answer": [
+      { "docId": "refund-policy.txt", "quote": "A learner can request a full refund within 7 days of enrolment, as long as they have completed less than 20 percent of the course videos." }
+    ]
+  },
+  {
+    "id": "q2",
+    "question": "My live batch already had its first class. What are my options now?",
+    "answer": [
+      { "docId": "refund-policy.txt", "quote": "Once the first live session has started, the learner can move to a later cohort one time, free of charge, but cannot get a refund." }
+    ]
+  },
+  {
+    "id": "q3",
+    "question": "How long does it take for refunded money to reach me?",
+    "answer": [
+      { "docId": "refund-policy.txt", "quote": "Refunds are processed to the original payment method within 10 working days." }
+    ]
+  },
+  {
+    "id": "q4",
+    "question": "Do quiz marks matter for getting certified?",
+    "answer": [
+      { "docId": "certificates.txt", "quote": "Quizzes are for practice and do not count towards the certificate." }
+    ]
+  },
+  {
+    "id": "q5",
+    "question": "If I take a refund after finishing, what happens to my certificate, and how much money do I get back if I bought it in a sale?",
+    "answer": [
+      { "docId": "certificates.txt", "quote": "any certificate already issued for that course is cancelled and can no longer be verified" },
+      { "docId": "refund-policy.txt", "quote": "the refund amount is the discounted price that was actually paid" }
+    ]
+  }
+]

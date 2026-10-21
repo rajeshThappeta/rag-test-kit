@@ -1,0 +1,15 @@
+Sample Academy Refund Policy
+
+This document describes when a learner can get a refund for a course at Sample Academy.
+
+Eligibility
+A learner can request a full refund within 7 days of enrolment, as long as they have completed less than 20 percent of the course videos. After 7 days, no refund is given for self-paced courses.
+
+Live cohort courses
+Live cohort courses follow a different rule. A learner can cancel up to 3 days before the first live session and receive a full refund. Once the first live session has started, the learner can move to a later cohort one time, free of charge, but cannot get a refund.
+
+How to request a refund
+Send an email to the support team with your enrolment ID and the reason for the request. Refunds are processed to the original payment method within 10 working days.
+
+Exceptions
+Courses bought at a discount during a sale can be refunded under the same rules, but the refund amount is the discounted price that was actually paid.
