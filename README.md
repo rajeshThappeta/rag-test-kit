@@ -45,9 +45,34 @@ These came from a LinkedIn discussion with developers who had built real RAG sys
 
 ## Use it with your own app
 
+Five steps. Only step 2 changes your app's code.
+
 **1. Add your documents** to `docs/` as `.txt` files (or set `DOCS_DIR`). The file name is the `docId`.
 
-**2. Write your test set** in `test-set.json`:
+Save the exact text your app chunks. If you clean PDF text before chunking, put the cleaned text here, not the raw PDF. Quotes and offsets are checked against this text.
+
+**2. Store each chunk's position at ingestion.** Next to `chunkText` and `embedding`, save where the chunk starts and ends in its document. This works with any splitter, including LangChain's, because it finds each chunk in the source text after splitting:
+
+```js
+// ingestion: record start/end offsets for every chunk
+function withOffsets(docId, sourceText, chunkTexts) {
+  let cursor = 0;
+  return chunkTexts.map((chunkText, chunkIndex) => {
+    const start = sourceText.indexOf(chunkText, cursor);
+    if (start === -1) throw new Error(`Chunk ${chunkIndex} not found in ${docId}`);
+    // move the cursor only past the start: overlapping chunks can begin inside the previous one
+    cursor = start + 1;
+    return { docId, chunkIndex, chunkText, start, end: start + chunkText.length };
+  });
+}
+
+const chunks = withOffsets("refund-policy.txt", cleanText, await splitter.splitText(cleanText));
+// then embed and insert as usual: { ...chunk, embedding }
+```
+
+Existing chunks without offsets need to be re-ingested once.
+
+**3. Write your test set** in `test-set.json`:
 
 ```json
 {
@@ -61,18 +86,24 @@ These came from a LinkedIn discussion with developers who had built real RAG sys
 
 A quote must appear exactly once in its document. If it appears more than once, the kit stops and asks you to make it longer.
 
-**3. Replace `retriever.js`** with your own retrieval. The only contract:
+**4. Replace `retriever.js`** with your app's real search. The only contract: return the top k chunks, each with `docId`, `start` and `end`. With Mongoose and MongoDB Atlas Vector Search:
 
 ```js
-// returns the top k chunks, each with its position in the source document
+import { Chunk } from "../models/chunk.model.js";
+import { embed } from "../services/embedding.service.js";
+
 export async function retrieve(question, k) {
-  return [{ docId: "certificates.txt", start: 512, end: 812 }, /* ... */];
+  const queryVector = await embed(question);
+  return Chunk.aggregate([
+    { $vectorSearch: { index: "chunks_index", path: "embedding", queryVector, numCandidates: 100, limit: k } },
+    { $project: { _id: 0, docId: 1, start: 1, end: 1 } },
+  ]);
 }
 ```
 
-That means your chunks need `start` and `end` offsets. Save them at ingestion time, next to `chunkText` and `embedding`. A MongoDB Atlas Vector Search example is in the comments of `retriever.js`.
+Use the same embedding model and index your app uses, or the results will not match production.
 
-**4. Run it** and compare settings:
+**5. Run it after every change**, such as a new embedding model, chunk size or top-k, and compare:
 
 ```bash
 npm run eval                              # top 3 (default)
