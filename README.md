@@ -7,7 +7,7 @@ Most RAG apps are tested by asking a few questions and checking whether the answ
 It runs as soon as you clone it, on two small sample documents. Then you swap in your own documents, test questions and retriever.
 
 ```bash
-git clone <this repo>
+git clone https://github.com/rajeshThappeta/rag-test-kit
 cd rag-test-kit
 npm run eval
 ```
